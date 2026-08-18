@@ -71,3 +71,17 @@ Environment variables:
 COGNODB_URI
 COGNODB_USER
 COGNODB_PASSWORD
+
+## Dataset
+
+This benchmark uses the SNAP soc-Pokec social network relationship dataset.
+
+For reproducibility, download the dataset from the official SNAP dataset page and place the required file at:
+
+data/soc-pokec-relationships.txt.gz
+
+The benchmark loads the first 100,000 valid relationships.
+
+Dataset used in this run:
+- Nodes: 49,683
+- Relationships: 100,000
