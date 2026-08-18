@@ -1,0 +1,39 @@
+CognoDB Benchmark Results
+
+Dataset:
+Nodes: 49,683
+Relationships: 100,000
+
+Iterations:
+Warm-up: 20
+Measured: 100
+
+1-Hop Traversal
+Average: 556.264 ms
+p50: 554.661 ms
+p95: 575.950 ms
+
+2-Hop Traversal
+Average: 548.142 ms
+p50: 551.004 ms
+p95: 561.188 ms
+
+3-Hop Traversal
+Average: 553.505 ms
+p50: 558.470 ms
+p95: 675.424 ms
+
+Point Lookup
+Average: 513.545 ms
+p50: 549.168 ms
+p95: 609.156 ms
+
+Filtered Lookup
+Average: 582.444 ms
+p50: 579.703 ms
+p95: 593.503 ms
+
+Aggregation
+Average: 537.614 ms
+p50: 541.816 ms
+p95: 601.055 ms
