@@ -1,0 +1,8 @@
+platform,workload,iterations,avg_ms,p50_ms,p95_ms,throughput_ops_sec
+FalkorDB,1-Hop Traversal,100,45.539,37.996,42.296,
+FalkorDB,2-Hop Traversal,100,55.608,37.880,283.521,
+FalkorDB,3-Hop Traversal,100,38.025,38.081,39.491,
+FalkorDB,Point Lookup,100,37.622,37.636,39.226,
+FalkorDB,Indexed Property Lookup,100,37.584,37.532,40.238,
+FalkorDB,Aggregation,100,37.451,37.472,38.502,
+FalkorDB,Concurrent Read/Write (10 clients),1000,,39.000,42.000,237.373

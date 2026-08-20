@@ -1,25 +1,37 @@
 package com.benchmark.config;
 
-/**
- * Simple holder for one platform's connection details.
- * Populate these from environment variables — never hardcode secrets.
- */
+import io.github.cdimascio.dotenv.Dotenv;
+
 public record PlatformConfig(
         String name,
         String uri,
         String username,
         String password
 ) {
-    public static PlatformConfig fromEnv(String name, String uriEnv, String userEnv, String passEnv) {
-        String uri = System.getenv(uriEnv);
-        String user = System.getenv(userEnv);
-        String pass = System.getenv(passEnv);
+
+    public static PlatformConfig fromEnv(
+            String name,
+            String uriEnv,
+            String userEnv,
+            String passEnv
+    ) {
+
+        Dotenv dotenv = Dotenv.configure()
+                .directory(".")
+                .ignoreIfMissing()
+                .load();
+
+        String uri = dotenv.get(uriEnv);
+        String user = dotenv.get(userEnv);
+        String pass = dotenv.get(passEnv);
 
         if (uri == null || user == null || pass == null) {
             throw new IllegalStateException(
-                    "Missing env vars for " + name + ": expected " + uriEnv + ", " + userEnv + ", " + passEnv
+                    "Could not load .env values for " + name +
+                            ". Check that .env is in the project root."
             );
         }
+
         return new PlatformConfig(name, uri, user, pass);
     }
 }

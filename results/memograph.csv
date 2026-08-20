@@ -1,0 +1,18 @@
+platform,workload,iterations,avg_ms,p50_ms,p95_ms
+Memgraph,1-Hop Traversal,100,331.947,331.817,334.363
+Memgraph,2-Hop Traversal,100,333.730,330.206,333.829
+Memgraph,3-Hop Traversal,100,333.550,331.597,339.766
+Memgraph,Point Lookup,100,329.967,329.898,332.287
+Memgraph,Indexed Property Lookup,100,333.106,329.946,333.259
+Memgraph,Aggregation,100,336.770,336.284,339.981
+
+/////concurrent results////////////////////////
+
+platform,workload,iterations,avg_ms,p50_ms,p95_ms
+Memgraph,1-Hop Traversal,100,331.947,331.817,334.363
+Memgraph,2-Hop Traversal,100,333.730,330.206,333.829
+Memgraph,3-Hop Traversal,100,333.550,331.597,339.766
+Memgraph,Point Lookup,100,329.967,329.898,332.287
+Memgraph,Indexed Property Lookup,100,333.106,329.946,333.259
+Memgraph,Aggregation,100,336.770,336.284,339.981
+Memgraph,Concurrent Read/Write (10 clients),1000,,357.000,727.000

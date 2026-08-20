@@ -1,51 +1,52 @@
 package com.benchmark.benchmark;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.neo4j.driver.AuthTokens;
 import org.neo4j.driver.Driver;
 import org.neo4j.driver.GraphDatabase;
 
 public class DataLoaderRunner {
 
-    public static void main(String[] args)
-            throws Exception {
+    public static void main(String[] args) throws Exception {
 
         /*
-         * Read CognoDB credentials from
-         * environment variables.
+         * Load .env from the project root.
+         */
+        Dotenv dotenv = Dotenv.configure()
+                .directory(".")
+                .load();
+
+        /*
+         * Read Neo4j credentials.
          */
         String uri =
-                System.getenv("COGNODB_URI");
+                dotenv.get("NEO4J_URI");
 
         String username =
-                System.getenv("COGNODB_USER");
+                dotenv.get("NEO4J_USERNAME");
 
         String password =
-                System.getenv("COGNODB_PASSWORD");
+                dotenv.get("NEO4J_PASSWORD");
 
         /*
-         * Make sure all environment variables
-         * are available.
+         * Check that all required variables exist.
          */
         if (uri == null || uri.isBlank()
-                || username == null
-                || username.isBlank()
-                || password == null
-                || password.isBlank()) {
+                || username == null || username.isBlank()
+                || password == null || password.isBlank()) {
 
             throw new IllegalStateException(
-                    "Missing CognoDB environment variables.\n"
-                            + "Required variables:\n"
-                            + "COGNODB_URI\n"
-                            + "COGNODB_USER\n"
-                            + "COGNODB_PASSWORD"
+                    "Missing Neo4j environment variables.\n"
+                            + "Required:\n"
+                            + "NEO4J_URI\n"
+                            + "NEO4J_USERNAME\n"
+                            + "NEO4J_PASSWORD\n\n"
+                            + "Make sure .env is in the project root."
             );
         }
 
         /*
          * Dataset location.
-         *
-         * This is relative to the project
-         * working directory.
          */
         String datasetPath =
                 "data/soc-pokec-relationships.txt.gz";
@@ -56,19 +57,32 @@ public class DataLoaderRunner {
         );
 
         System.out.println(
-                "       CognoDB Data Loader"
+                "          Neo4j Data Loader"
         );
 
         System.out.println(
                 "======================================"
         );
 
+        System.out.println();
         System.out.println(
-                "Connecting to CognoDB..."
+                "Connecting to Neo4j..."
+        );
+
+        System.out.println(
+                "Dataset: " + datasetPath
+        );
+
+        System.out.println(
+                "Maximum relationships: 100000"
+        );
+
+        System.out.println(
+                "Batch size: 1000"
         );
 
         /*
-         * Create Neo4j/CognoDB driver.
+         * Connect to Neo4j Aura.
          */
         try (Driver driver =
                      GraphDatabase.driver(
@@ -80,42 +94,53 @@ public class DataLoaderRunner {
                      )) {
 
             /*
-             * Test the connection.
+             * Verify the connection.
              */
             driver.verifyConnectivity();
 
+            System.out.println();
             System.out.println(
-                    "Connected to CognoDB successfully."
+                    "Connected to Neo4j successfully."
             );
 
-            System.out.println(
-                    "Dataset: "
-                            + datasetPath
-            );
+            /*
+             * Test query.
+             */
+            var result =
+                    driver.session()
+                            .run("RETURN 1 AS test")
+                            .single();
 
             System.out.println(
-                    "Maximum relationships: 100000"
+                    "Test query result: "
+                            + result.get("test").asInt()
             );
 
-            System.out.println(
-                    "Batch size: 1000"
-            );
-
+            /*
+             * Start loading the dataset.
+             */
             System.out.println();
             System.out.println(
                     "Starting data load..."
             );
 
-            /*
-             * Create loader.
-             */
             DataLoader loader =
                     new DataLoader(driver);
 
-            /*
-             * Start loading.
-             */
             loader.load(datasetPath);
+
+            System.out.println();
+            System.out.println(
+                    "======================================"
+            );
+
+            System.out.println(
+                    "       DATA LOAD FINISHED"
+            );
+
+            System.out.println(
+                    "======================================"
+            );
 
             System.out.println();
             System.out.println(
@@ -124,3 +149,4 @@ public class DataLoaderRunner {
         }
     }
 }
+

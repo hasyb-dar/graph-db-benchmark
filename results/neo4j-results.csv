@@ -1,0 +1,8 @@
+platform,workload,iterations,avg_ms,p50_ms,p95_ms,throughput_ops_sec
+Neo4j Aura,1-Hop Traversal,100,225.590,213.259,223.671,
+Neo4j Aura,2-Hop Traversal,100,217.272,212.937,219.449,
+Neo4j Aura,3-Hop Traversal,100,219.950,213.167,223.413,
+Neo4j Aura,Point Lookup,100,219.134,212.172,219.807,
+Neo4j Aura,Indexed Property Lookup,100,205.846,212.582,217.646,
+Neo4j Aura,Aggregation,100,211.519,212.065,216.340,
+Neo4j Aura,Concurrent Read/Write (10 clients),1000,,186.000,215.000,49.319

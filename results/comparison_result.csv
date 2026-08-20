@@ -1,0 +1,31 @@
+platform,workload,iterations,avg_ms,p50_ms,p95_ms,throughput_ops_sec
+Memgraph,1-Hop Traversal,100,331.947,331.817,334.363,
+Memgraph,2-Hop Traversal,100,333.730,330.206,333.829,
+Memgraph,3-Hop Traversal,100,333.550,331.597,339.766,
+Memgraph,Point Lookup,100,329.967,329.898,332.287,
+Memgraph,Indexed Property Lookup,100,333.106,329.946,333.259,
+Memgraph,Aggregation,100,336.770,336.284,339.981,
+Memgraph,Concurrent Read/Write (10 clients),1000,,357.000,727.000,21.132
+FalkorDB,1-Hop Traversal,100,45.539,37.996,42.296,
+FalkorDB,2-Hop Traversal,100,55.608,37.880,283.521,
+FalkorDB,3-Hop Traversal,100,38.025,38.081,39.491,
+FalkorDB,Point Lookup,100,37.622,37.636,39.226,
+FalkorDB,Indexed Property Lookup,100,37.584,37.532,40.238,
+FalkorDB,Aggregation,100,37.451,37.472,38.502,
+FalkorDB,Concurrent Read/Write (10 clients),1000,,39.000,42.000,237.373
+ArangoDB,1-Hop Traversal,100,296.188,288.205,355.018,
+ArangoDB,2-Hop Traversal,100,302.708,288.647,360.878,
+ArangoDB,3-Hop Traversal,100,323.146,294.656,416.666,
+ArangoDB,Point Lookup,100,289.017,286.329,292.101,
+ArangoDB,Indexed Property Lookup,100,297.681,286.940,357.635,
+ArangoDB,Aggregation,100,291.766,287.535,319.060,
+ArangoDB,Concurrent Read/Write (10 clients),1000,,296.000,315.000,32.471
+Neo4j Aura,1-Hop Traversal,100,225.590,213.259,223.671,
+Neo4j Aura,2-Hop Traversal,100,217.272,212.937,219.449,
+Neo4j Aura,3-Hop Traversal,100,219.950,213.167,223.413,
+Neo4j Aura,Point Lookup,100,219.134,212.172,219.807,
+Neo4j Aura,Indexed Property Lookup,100,205.846,212.582,217.646,
+Neo4j Aura,Aggregation,100,211.519,212.065,216.340,
+Neo4j Aura,Concurrent Read/Write (10 clients),1000,,186.000,215.000,49.319
+
+

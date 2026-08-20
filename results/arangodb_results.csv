@@ -1,0 +1,8 @@
+platform,workload,iterations,avg_ms,p50_ms,p95_ms,throughput_ops_sec
+ArangoDB,1-Hop Traversal,100,296.188,288.205,355.018,
+ArangoDB,2-Hop Traversal,100,302.708,288.647,360.878,
+ArangoDB,3-Hop Traversal,100,323.146,294.656,416.666,
+ArangoDB,Point Lookup,100,289.017,286.329,292.101,
+ArangoDB,Indexed Property Lookup,100,297.681,286.940,357.635,
+ArangoDB,Aggregation,100,291.766,287.535,319.060,
+ArangoDB,Concurrent Read/Write (10 clients),1000,,296.000,315.000,32.471
